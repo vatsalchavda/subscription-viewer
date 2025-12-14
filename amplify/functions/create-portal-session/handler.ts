@@ -13,9 +13,12 @@ export const handler: Handler = async (event) => {
   const stripe = new Stripe(stripeSecret);
 
   try {
+    const cleanUrl = frontEndUrl.endsWith('/') ? frontEndUrl.slice(0, -1) : frontEndUrl;
+    const returnUrl = `${cleanUrl}?billing_return=true`;
+
     const session = await stripe.billingPortal.sessions.create({
       customer: customerId,
-      return_url: frontEndUrl, 
+      return_url: returnUrl, 
     });
 
     return { 
