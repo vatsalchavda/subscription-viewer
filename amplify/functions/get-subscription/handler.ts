@@ -78,4 +78,3 @@ export const handler: Handler = async (event) => {
     throw new Error(`Failed to fetch subscription: ${(error as Error).message}`);
   }
 };
-

@@ -159,6 +159,24 @@ This key is required for analytics to work locally.
 - **Sign-Up Flow**: Add user registration and onboarding.
 - **UI/UX**: Improve dashboard design and add more subscription management features.
 
+- **Frontend Architecture**: For future expansion, consider adopting a modular front-end architecture with multiple routes, reusable components, and dedicated pages (e.g., using React Router). This will make it easier to add features like profile management, billing history, settings, or admin panels as the app grows.
+
+---
+
+## Error Handling Improvements
+
+While the project uses basic error handling, here are some areas where error messages can be made more robust:
+
+- **SubscriptionDashboard.tsx**
+	- When loading subscription details fails, the error message is generic: `Could not load subscription details.`
+		- Suggestion: Display more context, e.g., `Could not load subscription details. Please check your network connection or try again later.`
+	- When redirecting to the billing portal fails, the alert is: `Failed to redirect to billing portal.`
+		- Suggestion: Provide more user guidance, e.g., `Unable to open the billing portal. Please refresh the page or contact support if the issue persists.`
+
+- **Backend Lambda Handlers**
+	- Errors such as `Configuration Error: Missing Stripe environment variables.` and `Failed to fetch subscription: ...` are thrown and logged, but could include more context (e.g., which variable is missing, or a unique error code for easier debugging).
+	- Suggestion: Include the name of the missing variable or a reference ID in error messages for better traceability.
+
 ---
 
 ## Deployment Process

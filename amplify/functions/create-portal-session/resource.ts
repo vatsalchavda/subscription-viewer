@@ -9,4 +9,3 @@ export const createPortalSession = defineFunction({
     STRIPE_BILLING_PORTAL_RETURN_URL: process.env.STRIPE_BILLING_PORTAL_RETURN_URL || "https://localhost:5173",
   }
 });
-
