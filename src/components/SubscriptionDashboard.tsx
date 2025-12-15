@@ -30,7 +30,7 @@ export const SubscriptionDashboard = ({ userEmail }: { userEmail?: string }) => 
   const isBillingReturn = new URLSearchParams(window.location.search).get('billing_return');
   if (isBillingReturn) { 
     // Attempt to close the tab immediately 
-    // // (Works if the tab was opened by a script, which it was!) 
+    // (Works if the tab was opened by a script, which it was!) 
     window.close(); 
     
     // Fallback UI if browser blocks window.close() 
@@ -66,7 +66,7 @@ export const SubscriptionDashboard = ({ userEmail }: { userEmail?: string }) => 
 
 
 
-  // 1. Fetch Subscription Status
+  // Fetch Subscription Status
   useEffect(() => {
     // Initialize Amplitude
     const amplitudeApiKey = import.meta.env.VITE_AMPLITUDE_API_KEY;
@@ -117,7 +117,7 @@ export const SubscriptionDashboard = ({ userEmail }: { userEmail?: string }) => 
     try {
       const response = await client.queries.createPortalSession();
       if (response.data && response.data.url) {
-        // window.location.href = response.data.url; Remove this to avoid browser history leaking.
+        // window.location.href = response.data.url; -- Removed this to avoid browser history leaking.
         window.open(response.data.url, '_blank');
       }
     } catch (err) {

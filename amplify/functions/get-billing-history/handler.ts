@@ -12,7 +12,7 @@ export const handler: Handler = async (event) => {
     const stripe = new Stripe(stripeSecret);
 
     try {
-        // Get kast 5 invoices for the default customer
+        // Get last 5 invoices for the default customer
         const invoices = await stripe.invoices.list({
             customer: defaultCustomerId,
             limit: 5

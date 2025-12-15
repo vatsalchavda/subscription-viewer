@@ -1,8 +1,6 @@
 import Stripe from 'stripe';
 import type { Handler } from 'aws-lambda';
 
-// 1. Define the exact shape we need.
-// This overrides the complex SDK types and eliminates ambiguity.
 interface SubscriptionShape {
   status: string;
   current_period_end?: number;
@@ -28,7 +26,7 @@ export const handler: Handler = async (event) => {
   const stripe = new Stripe(stripeSecret);
 
   try {
-    // fetch all subscriptions for the customer
+    // Fetch all subscriptions for the customer
     const subscriptions = await stripe.subscriptions.list({
       customer: customerId,
       status: 'all',
@@ -39,7 +37,7 @@ export const handler: Handler = async (event) => {
       return [];
     }
 
-    // map over all subscriptions and format the response
+    // Map over all subscriptions and format the response
     const formattedSubs = await Promise.all(subscriptions.data.map(async (sub) => {
       const subscription = sub as unknown as SubscriptionShape;
 

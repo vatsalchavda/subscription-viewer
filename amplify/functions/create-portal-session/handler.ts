@@ -3,7 +3,7 @@ import type { Handler } from 'aws-lambda';
 
 export const handler: Handler = async (event) => {
   const stripeSecret = process.env.STRIPE_SECRET_KEY as string;
-  const customerId = process.env.DEFAULT_STRIPE_CUSTOMER_ID as string; // Simulating user lookup
+  const customerId = process.env.DEFAULT_STRIPE_CUSTOMER_ID as string;
   const frontEndUrl = process.env.STRIPE_BILLING_PORTAL_RETURN_URL as string;
 
   if (!stripeSecret || !customerId || !frontEndUrl) {
